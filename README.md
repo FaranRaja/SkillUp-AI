@@ -1,4 +1,4 @@
-# again
+# SkillUp AI
 
 A new Flutter project.
 
