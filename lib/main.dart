@@ -12,10 +12,10 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Initialize Supabase with your URL and anon key
+  // Initialize Supabase with URL and anon key
   await Supabase.initialize(
     url: 'https://bnwskkovjysujfnhlwkf.supabase.co',
-    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJud3Nra292anlzdWpmbmhsd2tmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzI3MTczMDUsImV4cCI6MjA0ODI5MzMwNX0.XIkKDTZFlcmBk7eSXoKd1FRRNU_oJK-nUw3n7TTaB44', // Replace with your Supabase anon key
+    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJud3Nra292anlzdWpmbmhsd2tmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzI3MTczMDUsImV4cCI6MjA0ODI5MzMwNX0.XIkKDTZFlcmBk7eSXoKd1FRRNU_oJK-nUw3n7TTaB44',
   );
 
   runApp(SkillUpApp());
@@ -400,7 +400,6 @@ class LandingPage extends StatelessWidget {
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              // Profile picture
               CircleAvatar(
                 backgroundImage: AssetImage('assets/user.png'),
                 radius: 50,
@@ -675,7 +674,7 @@ class _FAQPageState extends State<FAQPage> {
       final url = Uri.parse('https://query.wikidata.org/sparql?query=$query&format=json');
 
       final response = await http.get(url, headers: {
-        'User-Agent': 'SkillUpApp', // User-Agent is required by the Wikidata API
+        'User-Agent': 'SkillUpApp',
       });
 
       if (response.statusCode == 200) {
