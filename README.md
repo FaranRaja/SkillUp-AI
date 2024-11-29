@@ -20,9 +20,9 @@ Once logged in, you'll be directed to the Landing Page. Here's what you'll find:
 3.	Pending Activities: This section showcases a grid of cards representing your pending activities, such as notes, videos, or text-based resources related to different subjects like OOP, SEC, DSA, and ICT.
 4.	Popular Subjects: This section displays a set of chips representing popular subjects like Mathematics, Chemistry, Physics, and Computer Science. Tapping a subject chip might lead you to relevant content or quizzes (in future).
 5.	Bottom Navigation Bar: 
-o	Home: This button brings you back to the Landing Page (you're currently on this page).
-o	Categories: This button might lead you to a page where you can explore different learning categories (in future).
-o	Search: This button takes you to the Search Engine page.
+	- Home: This button brings you back to the Landing Page (you're currently on this page).
+    - Categories: This button might lead you to a page where you can explore different learning categories (in future).
+    - Search: This button takes you to the Search Engine page.
 
 # Taking Quizzes
 
