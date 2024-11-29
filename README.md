@@ -1,6 +1,7 @@
 # SkillUp AI
 
 This mobile application helps you improve your skills through various learning activities and quizzes.
+Tutorial on how to use the app once installed : https://youtube.com/shorts/KYqsTYK-Ds8?feature=share
 
 # Getting Started
 
