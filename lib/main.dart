@@ -686,7 +686,7 @@ class _FAQPageState extends State<FAQPage> {
         },
         body: jsonEncode({
           'inputs': question,
-          'parameters': {'max_length': 5000, 'temperature': 0.7}
+          'parameters': {'max_length': 50000, 'temperature': 0.7}
         }),
       );
 
