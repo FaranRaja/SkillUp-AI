@@ -685,8 +685,8 @@ class _FAQPageState extends State<FAQPage> {
           'Authorization': 'Bearer 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',
         },
         body: jsonEncode({
-          'inputs': question,
-          'parameters': {'max_length': 50000, 'temperature': 0.7}
+          'inputs': "Answer the question: $question",
+          'parameters': {'max_length': 500, 'temperature': 0.7}
         }),
       );
 
