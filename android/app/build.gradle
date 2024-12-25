@@ -21,6 +21,7 @@ android {
     lintOptions {
         // Disabling lint checks for release builds
         checkReleaseBuilds false
+        disable 'InvalidPackage'
     }
 
     defaultConfig {
@@ -28,17 +29,21 @@ android {
         applicationId = "com.example.again"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = flutter.minSdkVersion
-        targetSdk = flutter.targetSdkVersion
+        minSdkVersion 21
+        targetSdkVersion 34
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+        multiDexEnabled true
     }
 
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.debug
+            signingConfig signingConfigs.debug
+            minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 }
@@ -48,10 +53,10 @@ flutter {
 }
 
 dependencies {
-
-    implementation files('libs/kotlin-compiler-31.3.2.jar') {
-
-    }
+    implementation 'androidx.multidex:multidex:2.0.1'
+    def lifecycle_version = "2.2.0"
+    implementation "androidx.lifecycle:lifecycle-runtime:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
 }
 configurations.all {
     exclude group: 'org.jetbrains', module: 'annotations'

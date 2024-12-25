@@ -4,24 +4,26 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
 
   // Initialize Supabase with URL and anon key
   await Supabase.initialize(
     url: 'https://bnwskkovjysujfnhlwkf.supabase.co',
-    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJud3Nra292anlzdWpmbmhsd2tmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzI3MTczMDUsImV4cCI6MjA0ODI5MzMwNX0.XIkKDTZFlcmBk7eSXoKd1FRRNU_oJK-nUw3n7TTaB44',
+    anonKey:
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJud3Nra292anlzdWpmbmhsd2tmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzI3MTczMDUsImV4cCI6MjA0ODI5MzMwNX0.XIkKDTZFlcmBk7eSXoKd1FRRNU_oJK-nUw3n7TTaB44',
   );
 
   runApp(SkillUpApp());
 }
 
 class SkillUpApp extends StatelessWidget {
+  const SkillUpApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -32,6 +34,8 @@ class SkillUpApp extends StatelessWidget {
 }
 
 class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
@@ -69,6 +73,8 @@ class _SplashScreenState extends State<SplashScreen> {
 }
 
 class AuthPage extends StatefulWidget {
+  const AuthPage({super.key});
+
   @override
   _AuthPageState createState() => _AuthPageState();
 }
@@ -165,11 +171,11 @@ class _AuthPageState extends State<AuthPage> {
             SizedBox(height: 24),
             ElevatedButton(
               onPressed: _isSignUp ? _signUp : _login,
-              child: Text(_isSignUp ? 'Sign Up' : 'Login'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue,
                 minimumSize: Size(double.infinity, 50),
               ),
+              child: Text(_isSignUp ? 'Sign Up' : 'Login'),
             ),
             SizedBox(height: 16),
             TextButton(
@@ -179,7 +185,9 @@ class _AuthPageState extends State<AuthPage> {
                 });
               },
               child: Text(
-                _isSignUp ? 'Already have an account? Login' : 'Don’t have an account? Sign Up',
+                _isSignUp
+                    ? 'Already have an account? Login'
+                    : 'Don’t have an account? Sign Up',
                 style: TextStyle(color: Colors.blue),
               ),
             ),
@@ -191,6 +199,8 @@ class _AuthPageState extends State<AuthPage> {
 }
 
 class LandingPage extends StatelessWidget {
+  const LandingPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     final user = Supabase.instance.client.auth.currentUser;
@@ -284,16 +294,16 @@ class LandingPage extends StatelessWidget {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => QuizCategoryPage()),
+                          MaterialPageRoute(
+                              builder: (context) => QuizCategoryPage()),
                         );
                       },
-                      child: Text('Take Quiz', style: TextStyle(fontSize: 14)),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blue,
                         minimumSize: Size(80, 36),
                       ),
+                      child: Text('Take Quiz', style: TextStyle(fontSize: 14)),
                     ),
-
                   ],
                 ),
               ),
@@ -356,7 +366,6 @@ class LandingPage extends StatelessWidget {
     );
   }
 
-
   Widget _buildActivityCard(String title, String type) {
     return Container(
       decoration: BoxDecoration(
@@ -388,6 +397,7 @@ class LandingPage extends StatelessWidget {
       labelStyle: TextStyle(color: color),
     );
   }
+
   void _showProfileModal(BuildContext context) {
     showDialog(
       context: context,
@@ -413,29 +423,31 @@ class LandingPage extends StatelessWidget {
                   Navigator.pop(context); // Close the modal
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => AuthPage()), // Navigate to the login screen
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            AuthPage()), // Navigate to the login screen
                   );
                   Fluttertoast.showToast(
                     msg: "Successfully signed out!",
                     backgroundColor: Colors.green,
                   );
                 },
-                child: Text('Sign Out'),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue,
                   minimumSize: Size(double.infinity, 50),
                 ),
+                child: Text('Sign Out'),
               ),
               SizedBox(height: 10),
               ElevatedButton(
                 onPressed: () {
                   SystemNavigator.pop(); // Exit / close the modal
                 },
-                child: Text('Exit'),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red,
                   minimumSize: Size(double.infinity, 50),
                 ),
+                child: Text('Exit'),
               ),
             ],
           ),
@@ -445,8 +457,9 @@ class LandingPage extends StatelessWidget {
   }
 }
 
-
 class QuizCategoryPage extends StatelessWidget {
+  const QuizCategoryPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     final List<Map<String, dynamic>> categories = [
@@ -474,7 +487,8 @@ class QuizCategoryPage extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => QuizPage(categoryId: categories[index]['id']),
+                  builder: (context) =>
+                      QuizPage(categoryId: categories[index]['id']),
                 ),
               );
             },
@@ -485,11 +499,10 @@ class QuizCategoryPage extends StatelessWidget {
   }
 }
 
-
 class QuizPage extends StatefulWidget {
   final int categoryId;
 
-  QuizPage({required this.categoryId});
+  const QuizPage({super.key, required this.categoryId});
   @override
   _QuizPageState createState() => _QuizPageState();
 }
@@ -518,7 +531,8 @@ class _QuizPageState extends State<QuizPage> {
         if (data['response_code'] == 0) {
           setState(() {
             _questions = (data['results'] as List).map((question) {
-              List<String> options = List<String>.from(question['incorrect_answers']);
+              List<String> options =
+                  List<String>.from(question['incorrect_answers']);
               options.add(question['correct_answer']);
               options.shuffle();
 
@@ -595,47 +609,49 @@ class _QuizPageState extends State<QuizPage> {
       body: _isLoading
           ? Center(child: CircularProgressIndicator())
           : _questions.isEmpty
-          ? Center(child: Text("No questions available."))
-          : Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Question ${_currentQuestionIndex + 1}/${_questions.length}",
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 20),
-            Text(
-              _questions[_currentQuestionIndex]['question'],
-              style: TextStyle(fontSize: 16),
-            ),
-            SizedBox(height: 20),
-            ..._questions[_currentQuestionIndex]['options'].map((option) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: ElevatedButton(
-                  onPressed: () => _nextQuestion(option),
-                  child: Text(option),
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: Size(double.infinity, 50),
-                    backgroundColor: Colors.blue,
+              ? Center(child: Text("No questions available."))
+              : Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Question ${_currentQuestionIndex + 1}/${_questions.length}",
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      Text(
+                        _questions[_currentQuestionIndex]['question'],
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      SizedBox(height: 20),
+                      ..._questions[_currentQuestionIndex]['options']
+                          .map((option) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8.0),
+                          child: ElevatedButton(
+                            onPressed: () => _nextQuestion(option),
+                            style: ElevatedButton.styleFrom(
+                              minimumSize: Size(double.infinity, 50),
+                              backgroundColor: Colors.blue,
+                            ),
+                            child: Text(option),
+                          ),
+                        );
+                      }).toList(),
+                    ],
                   ),
                 ),
-              );
-            }).toList(),
-          ],
-        ),
-      ),
     );
   }
 }
 
-
 class FAQPage extends StatefulWidget {
+  const FAQPage({super.key});
+
   @override
   _FAQPageState createState() => _FAQPageState();
 }
@@ -661,41 +677,33 @@ class _FAQPageState extends State<FAQPage> {
     });
 
     try {
-      final query = Uri.encodeFull('''
-        SELECT ?item ?itemLabel ?itemDescription WHERE {
-          ?item rdfs:label "$question"@en.
-          ?item schema:description ?itemDescription.
-          FILTER(LANG(?itemDescription) = "en")
-          SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
-        }
-        LIMIT 1
-      ''');
-
-      final url = Uri.parse('https://query.wikidata.org/sparql?query=$query&format=json');
-
-      final response = await http.get(url, headers: {
-        'User-Agent': 'SkillUpApp',
-      });
+      final response = await http.post(
+        Uri.parse(
+            'https://api-inference.huggingface.co/models/google/flan-t5-base'),
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer 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',
+        },
+        body: jsonEncode({
+          'inputs': question,
+          'parameters': {'max_length': 5000, 'temperature': 0.7}
+        }),
+      );
 
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
-        final results = data['results']['bindings'];
-
-        if (results.isNotEmpty) {
-          setState(() {
-            _answer = results[0]['itemDescription']['value'] ?? 'No description found.';
-          });
-        } else {
-          setState(() {
-            _answer = 'No answer found for this question.';
-          });
-        }
-      } else {
         setState(() {
-          _answer = 'Error fetching data from the API. Please try again later.';
+          _answer = data[0]['generated_text'];
+        });
+      } else {
+        print('Error response: ${response.body}'); // For debugging
+        setState(() {
+          _answer =
+              'Error: Failed to get response from AI (Status: ${response.statusCode})\nDetails: ${response.body}';
         });
       }
     } catch (e) {
+      print('Exception: $e'); // For debugging
       setState(() {
         _answer = 'An error occurred: $e';
       });
@@ -807,4 +815,3 @@ class _FAQPageState extends State<FAQPage> {
     );
   }
 }
-
