@@ -803,7 +803,7 @@ class _FAQPageState extends State<FAQPage> {
               Expanded(
                 child: Center(
                   child: Text(
-                    'No results yet. Type a question to find an answer!',
+                    'No results yet, Type a question to find an answer!',
                     style: TextStyle(fontSize: 16, color: Colors.grey),
                     textAlign: TextAlign.center,
                   ),
