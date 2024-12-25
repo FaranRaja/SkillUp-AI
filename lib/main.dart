@@ -665,7 +665,7 @@ class _FAQPageState extends State<FAQPage> {
   Future<void> _fetchAnswer(String question) async {
     if (question.isEmpty) {
       Fluttertoast.showToast(
-        msg: 'Please enter a question!',
+        msg: 'Please enter your question!',
         backgroundColor: Colors.red,
       );
       return;
