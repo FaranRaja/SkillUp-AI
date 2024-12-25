@@ -2,6 +2,10 @@
 
 This mobile application helps you improve your skills through various learning activities and quizzes.
 
+APK Link: https://www.upload-apk.com/en/ugpdcq564QxiTcq
+
+Video Tutorial on how to use the app once installed : https://youtube.com/shorts/KYqsTYK-Ds8?feature=share
+
 # Getting Started
 
 1.	Run the lib/main.dart file and you'll be greeted with a splash screen. After a brief delay, you'll be directed to the login page.
